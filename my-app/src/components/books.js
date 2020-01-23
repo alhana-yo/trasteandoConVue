@@ -65,10 +65,17 @@ class Books {
   }
   createNewBook(book) {
     const id = this.createId();
+    // let id = -1;
+    // this.getBooks().forEach(elem => {
+    //   book.id == elem.id ? (id = book.id) : (id = this.createId());
+    // });
     console.log("la id", id);
     this.books.push(new Book((book.id = id), book.title, book.description));
-    // this.books.push(new Book(book.title, book.description));
   }
+  // editBook(position, book) {
+  //   const elements = this.books.splice(position, 1, book);
+  //   console.log("elementos eliminados en el splice", elements);
+  // }
 }
 
 export default new Books();

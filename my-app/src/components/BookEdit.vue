@@ -15,7 +15,7 @@
     </div>
 
     <button @click="gotoBooks()">Cancel</button>
-    <!-- <button @click="save()">Save</button> -->
+    <button @click="saveEdit()">Save</button>
   </div>
 </template>
 
@@ -39,8 +39,17 @@ export default {
     gotoBooks() {
       this.$router.push("/books");
     },
-    save() {
-      books.createNewBook(this.book);
+    saveEdit() {
+      // const id = parseInt(this.$route.params.id);
+      // const position = books.books.findIndex(element => {
+      //   console.log("element.id", element.id);
+      //   console.log("id", id);
+      //   console.log("element.id === id;", element.id === id);
+      //   element.id === id;
+      // });
+
+      // console.log("la posicion", position);
+      //books.editBook(this.book, position);
       this.$router.push("/books");
     }
   }
