@@ -1,10 +1,10 @@
 <template>
   <div>
     <h2>{{book.title}}</h2>
-    <p>
+    <!-- <p>
       <span>Id:</span>
       {{book.id}}
-    </p>
+    </p>-->
     <div>
       <label>Title:</label>
       <input v-model="book.title" placeholder="Title" />
@@ -15,7 +15,7 @@
     </div>
 
     <button @click="gotoBooks()">Cancel</button>
-    <!-- <button @click="save()">Save</button> -->
+    <button @click="save()">Save</button>
   </div>
 </template>
 
