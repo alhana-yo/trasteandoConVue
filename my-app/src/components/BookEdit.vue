@@ -40,7 +40,7 @@ export default {
       this.$router.push("/books");
     },
     saveEdit() {
-      // const id = parseInt(this.$route.params.id);
+      // const id = parseFloat(this.$route.params.id);
       // const position = books.books.findIndex(element => {
       //   console.log("element.id", element.id);
       //   console.log("id", id);
