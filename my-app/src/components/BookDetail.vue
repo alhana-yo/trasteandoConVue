@@ -36,14 +36,9 @@ export default {
     deleteBook() {
       if (confirm("Are you sure deleting this post?")) {
         let id = parseFloat(this.$route.params.id);
-        console.log("librooos", books.books);
         for (let i = 0; i < books.books.length; i++) {
-          console.log("dentro del for");
-          console.log("books.books[i].id", books.books[i].id);
-          console.log("id", id);
           if (books.books[i].id === id) {
             books.books.splice(i, 1);
-            console.log("librooos tras borrar", books.books);
           }
         }
       }

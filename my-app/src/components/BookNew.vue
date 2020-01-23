@@ -27,7 +27,6 @@ export default {
     book: undefined
   }),
   beforeMount: function() {
-    console.log(this.$route.params.id);
     if (!this.$route.params.id) {
       this.book = { title: "", description: "" };
     } else {

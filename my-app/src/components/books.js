@@ -69,7 +69,6 @@ class Books {
     // this.getBooks().forEach(elem => {
     //   book.id == elem.id ? (id = book.id) : (id = this.createId());
     // });
-    console.log("la id", id);
     this.books.push(new Book((book.id = id), book.title, book.description));
   }
   // editBook(position, book) {
