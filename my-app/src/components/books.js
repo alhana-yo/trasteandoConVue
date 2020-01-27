@@ -5,6 +5,7 @@ let postsList = [];
 async function loadPosts() {
   postsList = await postsNormalize.getList();
   console.log("en books", postsList);
+  return postsList;
 }
 
 class Book {
@@ -17,11 +18,12 @@ class Book {
 
 class Books {
   constructor(list) {
-    console.log("en el constructor", list);
-    this.books = list;
-    // this.books = this.list.forEach(element => {
-    //   new Book(element.yearOfBirth, element.name, element.actor);
-    // });
+    list.then(function(list) {
+      console.log("en el constructor", list);
+      //   this.books = list.forEach(element => {
+      //     new Book(element.yearOfBirth, element.name, element.actor);
+      //   });
+    });
   }
 
   /*
@@ -96,5 +98,5 @@ class Books {
   //   console.log("elementos eliminados en el splice", elements);
   // }
 }
-loadPosts();
-export default new Books(postsList);
+
+export default new Books(loadPosts());
