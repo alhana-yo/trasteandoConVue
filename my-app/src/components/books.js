@@ -16,10 +16,10 @@ class Book {
 }
 
 class Books {
-  constructor() {
-    loadPosts();
-    console.log("en el constructor", postsList);
-    // this.books = this.postsList.forEach(element => {
+  constructor(list) {
+    console.log("en el constructor", list);
+    this.books = list;
+    // this.books = this.list.forEach(element => {
     //   new Book(element.yearOfBirth, element.name, element.actor);
     // });
   }
@@ -96,5 +96,5 @@ class Books {
   //   console.log("elementos eliminados en el splice", elements);
   // }
 }
-
-export default new Books();
+loadPosts();
+export default new Books(postsList);
