@@ -3,7 +3,7 @@
     <h2>BOOKS</h2>
     <ul>
       <li v-for="post in posts" :key="post.id">
-        <router-link :to="'/book/' + post.name">{{ post.name }} - {{ post.title }}</router-link>
+        <router-link :to="'/book/' + post.id">{{ post.id }} - {{ post.postTitle }}</router-link>
       </li>
     </ul>
 
