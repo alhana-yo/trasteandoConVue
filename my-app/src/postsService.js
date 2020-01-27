@@ -5,7 +5,7 @@ export async function loadPosts() {
   //http://hp-api.herokuapp.com/api/characters
 
   let result = await axios
-    .get("http://hp-api.herokuapp.com/api/characters", {
+    .get("http://localhost:3000/blogEntries/", {
       responseType: "json"
     })
     .then(response => (result = response));
