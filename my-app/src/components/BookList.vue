@@ -13,11 +13,15 @@
 
 <script>
 import books from "./books.js";
+// import * as postsNormalize from "../postsNormalize.js";
 
 export default {
   computed: {
     books() {
       return books.getBooks();
+      // let posts = postsNormalize.getList();
+      // console.log("en boobklist", posts);
+      // return posts;
     }
   },
   methods: {
