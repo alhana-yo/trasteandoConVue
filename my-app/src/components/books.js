@@ -1,7 +1,5 @@
 import * as postsNormalize from "../postsNormalize.js";
 
-let postsList = [];
-
 async function loadPosts() {
   let postsList = await postsNormalize.getList();
   console.log("en books", postsList);
@@ -17,40 +15,24 @@ class Book {
 }
 
 class Books {
-  constructor(list) {
+  constructor(promise) {
     this.books = [];
-    list.then(function(list) {
+    promise.then(list => {
       console.log("en el constructor", list);
-      //   list.forEach(element => {
-      //     console.log(new Book(element.yearOfBirth, element.name, element.actor));
-      //   });
 
-      // this.books = list.forEach(element => {
-      //   new Book(element.yearOfBirth, element.name, element.actor);
+      this.books = [...list];
+      // list.forEach(element => {
+      //   postsList.push(
+      //     new Book(element.yearOfBirth, element.name, element.actor)
+      //   );
       // });
-      list.forEach(element => {
-        postsList.push(
-          new Book(element.yearOfBirth, element.name, element.actor)
-        );
-      });
-      console.log("postlisssssssssst en then", postsList);
+      console.log("postlisssssssssst en then", this.books);
     });
-    // this.books = [
-    //     new Book(
-    //       11,
-    //       "SUEÑOS DE ACERO Y NEON",
-    //       "Los personajes que protagonizan este relato sobreviven en una sociedad en decadencia a la que, no obstante, lograrán devolver la posibilidad de un futuro. Año 2484. En un mundo dominado por las grandes corporaciones, solo un hombre, Jordi Thompson, detective privado deslenguado y vividor, pero de gran talento y sentido d..."
-    //     )]
   }
 
   getBooks() {
-    //return this.books;
-
-    this.books = postsList;
     console.log("en getBooks", this.books);
     return this.books;
-    // console.log("en getBooks", postsList);
-    // return postsList;
   }
 
   getBook(id) {
