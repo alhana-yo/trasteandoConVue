@@ -22,6 +22,9 @@ export default {
   created: function() {
     getList().then(response => (this.posts = response));
   },
+  // computed: function() {
+  //   getList().then(response => (this.posts = response));
+  // },
 
   methods: {
     newPost() {

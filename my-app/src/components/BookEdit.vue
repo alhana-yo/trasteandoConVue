@@ -1,17 +1,20 @@
 <template>
   <div>
-    <h2>{{book.title}}</h2>
-    <p>
-      <span>Id:</span>
-      {{book.id}}
-    </p>
     <div>
-      <label>Title:</label>
-      <input v-model="book.title" placeholder="Title" />
+      <label>Post Title:</label>
+      <input v-model="post.postTitle" placeholder="Post Title" />
     </div>
+
+    <div>
+      <label>Post Author:</label>
+      <input v-model="post.name" placeholder="Autho's Name" />
+      <input v-model="post.lastName" placeholder="Author's Lastname" />
+      <input v-model="post.nickname" placeholder="Author's nickname" />
+    </div>
+
     <div>
       <label>Description:</label>
-      <textarea v-model="book.description"></textarea>
+      <textarea v-model="post.postText"></textarea>
     </div>
 
     <button @click="gotoBooks()">Cancel</button>
@@ -20,18 +23,24 @@
 </template>
 
 <script>
-import books from "./books.js";
+import { getPost } from "../postsNormalize.js";
 
 export default {
   data: () => ({
-    book: undefined
+    post: undefined
   }),
   beforeMount: function() {
     if (!this.$route.params.id) {
-      this.book = { title: "", description: "" };
+      this.post = {
+        name: "",
+        lastName: "",
+        nickname: "",
+        postTitle: "",
+        postText: ""
+      };
     } else {
       let id = this.$route.params.id;
-      this.book = books.getBook(id);
+      getPost(id).then(response => (this.post = response));
     }
   },
   methods: {
