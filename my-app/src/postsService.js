@@ -46,7 +46,7 @@ export async function deletePost(id) {
 export async function saveComment(info, idPost) {
   console.log("peticion base de datos");
   await axios
-    .post("http://localhost:3000/blogEntries/" + idPost, info)
+    .post("http://localhost:3000/blogEntries/" + idPost + "/comments", info)
     .then(response => console.log(response));
 }
 

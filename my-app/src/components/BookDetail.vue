@@ -1,3 +1,9 @@
+<style scoped>
+.red {
+  color: red;
+}
+</style>
+
 <template>
   <div>
     <h2>{{post.postTitle}}</h2>
@@ -22,7 +28,7 @@
         <button @click="deleteComment()">Delete comment</button>
       </li>
     </ul>
-    <div>
+    <div v-if="this.show">
       <div>
         <label>Nickname:</label>
         <input v-model="newComment.nickname" placeholder="Nickname" />
@@ -32,6 +38,7 @@
         <textarea v-model="newComment.text"></textarea>
       </div>
       <button @click="addComment()">Add comment</button>
+      <button @click="notShowContent()">Cancel</button>
     </div>
     <button @click="gotoPosts()">Back</button>
     <button @click="gotoEdit()">Edit</button>
@@ -41,22 +48,15 @@
 </template>
 
 <script>
-import { getPost, deleteItem } from "../postsNormalize.js";
-import { saveComment } from "../postsService";
+import { getPost, deleteItem, createComment } from "../postsNormalize.js";
 
 export default {
-  // computed: {
-  //   book() {
-  //     let id = this.$route.params.id;
-  //     return books.getBook(id);
-  //   }
-  // },
-
   data: function() {
     return {
       post: {},
       postComments: [],
-      newComment: {}
+      newComment: {},
+      show: false
     };
   },
   created: function() {
@@ -76,16 +76,23 @@ export default {
     },
     deletePost() {
       let id = this.$route.params.id;
-      console.log("id del post a borrar", id);
       deleteItem(id);
       this.$router.push("/books");
     },
     addComment() {
       const postId = this.$route.params.id;
       console.log("id del post", postId);
-      saveComment(this.newComment, postId);
+      console.log("el comentario es", this.newComment);
+      createComment(this.newComment, postId);
     },
-    showContent() {}
+    showContent() {
+      this.show = true;
+      console.log("showcontent", this.show);
+    },
+    notShowContent() {
+      this.show = false;
+      console.log("not showcontent", this.show);
+    }
   }
 };
 </script>
