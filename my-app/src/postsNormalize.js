@@ -29,7 +29,6 @@ export async function createPost(info) {
 }
 
 export async function edit(info, id) {
-  console.log("he entrado en el normalizer en metodo editPost", info);
   const post = await editPost(
     {
       name: info.name,
@@ -47,7 +46,7 @@ export async function edit(info, id) {
 
 export async function deleteItem(id) {
   console.log("he entrado en el normalizer en metodo editPost", id);
-  const post = await deletePost();
+  const post = await deletePost(id);
 
-  console.log("edited Post", post);
+  console.log("deleted Post", post);
 }

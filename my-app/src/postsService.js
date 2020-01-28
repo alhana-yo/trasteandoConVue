@@ -37,9 +37,9 @@ export async function editPost(info, id) {
 }
 
 export async function deletePost(id) {
-  console.log("peticion borrar base de datos", parseInt(id));
+  console.log("peticion borrar base de datos", id);
   await axios
-    .delete("http://localhost:3000/blogEntries/" + parseInt(id))
+    .delete("http://localhost:3000/blogEntries/" + id)
     .then(response => console.log(response));
 }
 

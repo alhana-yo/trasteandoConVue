@@ -61,16 +61,9 @@ export default {
     },
     deletePost() {
       let id = this.$route.params.id;
+      console.log("id del post a borrar", id);
       deleteItem(id);
       this.$router.push("/books");
-    },
-
-    removeElement: function(id) {
-      for (let i = 0; i < this.valuesArray.length; i++) {
-        if (this.valuesArray[i].id === id) {
-          this.valuesArray.splice(i, 1);
-        }
-      }
     }
   }
 };
