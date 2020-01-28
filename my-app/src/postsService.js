@@ -9,7 +9,6 @@ export async function loadPosts() {
       responseType: "json"
     })
     .then(response => (result = response));
-  console.log("rsult", result.data);
   return result.data;
 }
 
@@ -28,7 +27,20 @@ export async function savePost(info) {
   await axios
     .post("http://localhost:3000/blogEntries/", info)
     .then(response => console.log(response));
-  // console.log("rsult", result.data);  ;
+}
+
+export async function editPost(info, id) {
+  console.log("peticion editar base de datos", id);
+  await axios
+    .put("http://localhost:3000/blogEntries/" + id, info)
+    .then(response => console.log(response));
+}
+
+export async function deletePost(id) {
+  console.log("peticion borrar base de datos", parseInt(id));
+  await axios
+    .delete("http://localhost:3000/blogEntries/" + parseInt(id))
+    .then(response => console.log(response));
 }
 
 /*

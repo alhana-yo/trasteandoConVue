@@ -21,14 +21,14 @@
       </li>
     </ul>
 
-    <button @click="gotoBooks()">Back</button>
+    <button @click="gotoPosts()">Back</button>
     <button @click="gotoEdit()">Edit</button>
-    <button @click="deleteBook()">Delete</button>
+    <button @click="deletePost()">Delete</button>
   </div>
 </template>
 
 <script>
-import { getPost } from "../postsNormalize.js";
+import { getPost, deleteItem } from "../postsNormalize.js";
 
 export default {
   // computed: {
@@ -52,22 +52,16 @@ export default {
     });
   },
   methods: {
-    gotoBooks() {
+    gotoPosts() {
       this.$router.push("/books");
     },
     gotoEdit() {
       let id = this.$route.params.id;
       this.$router.push("/book/edit/" + id);
     },
-    deleteBook() {
-      // if (confirm("Are you sure deleting this post?")) {
-      //   let id = parseFloat(this.$route.params.id);
-      //   for (let i = 0; i < books.books.length; i++) {
-      //     if (books.books[i].id === id) {
-      //       books.books.splice(i, 1);
-      //     }
-      //   }
-      // }
+    deletePost() {
+      let id = this.$route.params.id;
+      deleteItem(id);
       this.$router.push("/books");
     },
 

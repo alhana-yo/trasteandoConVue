@@ -1,20 +1,22 @@
-import { loadPosts, loadPost, savePost } from "./postsService.js";
+import {
+  loadPosts,
+  loadPost,
+  savePost,
+  editPost,
+  deletePost
+} from "./postsService.js";
 
 export async function getList() {
   const postList = await loadPosts();
-  console.log("lista de posts-postList", postList);
-
   return postList;
 }
 
 export async function getPost(id) {
   const post = await loadPost(id);
-  console.log("post con id", post);
   return post;
 }
 
 export async function createPost(info) {
-  console.log("he entrado en createPost normalizer");
   const post = await savePost({
     name: info.name,
     lastName: info.lastName,
@@ -23,6 +25,29 @@ export async function createPost(info) {
     postText: info.postText,
     postComments: []
   });
-
   console.log("createPost", post);
+}
+
+export async function edit(info, id) {
+  console.log("he entrado en el normalizer en metodo editPost", info);
+  const post = await editPost(
+    {
+      name: info.name,
+      lastName: info.lastName,
+      nickname: info.nickname,
+      postTitle: info.postTitle,
+      postText: info.postText,
+      postComments: info.postComments
+    },
+    id
+  );
+
+  console.log("edited Post", post);
+}
+
+export async function deleteItem(id) {
+  console.log("he entrado en el normalizer en metodo editPost", id);
+  const post = await deletePost();
+
+  console.log("edited Post", post);
 }

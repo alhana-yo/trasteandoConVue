@@ -18,16 +18,16 @@
     </div>
 
     <button @click="gotoBooks()">Cancel</button>
-    <button @click="saveEdit()">Save</button>
+    <button @click="saveEdition()">Save</button>
   </div>
 </template>
 
 <script>
-import { getPost } from "../postsNormalize.js";
+import { getPost, edit } from "../postsNormalize.js";
 
 export default {
   data: () => ({
-    post: undefined
+    post: {}
   }),
   beforeMount: function() {
     if (!this.$route.params.id) {
@@ -47,17 +47,11 @@ export default {
     gotoBooks() {
       this.$router.push("/books");
     },
-    saveEdit() {
-      // const id = parseFloat(this.$route.params.id);
-      // const position = books.books.findIndex(element => {
-      //   console.log("element.id", element.id);
-      //   console.log("id", id);
-      //   console.log("element.id === id;", element.id === id);
-      //   element.id === id;
-      // });
+    saveEdition() {
+      console.log("info a editar", this.post);
+      let id = this.$route.params.id;
 
-      // console.log("la posicion", position);
-      //books.editBook(this.book, position);
+      edit(this.post, id);
       this.$router.push("/books");
     }
   }
