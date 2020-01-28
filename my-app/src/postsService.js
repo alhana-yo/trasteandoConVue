@@ -13,6 +13,19 @@ export async function loadPosts() {
   return result.data;
 }
 
+export async function loadPost(id) {
+  //localhost:3000/blogEntries/
+  //http://hp-api.herokuapp.com/api/characters
+
+  let result = await axios
+    .get("http://localhost:3000/blogEntries/" + id, {
+      responseType: "json"
+    })
+    .then(response => (result = response));
+  console.log("rsult", result.data);
+  return result.data;
+}
+
 /*
 export async function loadPosts() {
   fetch("http://localhost:3000/blogEntries/")

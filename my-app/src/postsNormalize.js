@@ -1,4 +1,4 @@
-import { loadPosts } from "./postsService.js";
+import { loadPosts, loadPost } from "./postsService.js";
 
 export async function getList() {
   const postList = await loadPosts();
@@ -7,8 +7,8 @@ export async function getList() {
   return postList;
 }
 
-export function getPost(post) {
-  return { postTitle: post.postTitle, id: post.id };
+export async function getPost(id) {
+  const post = await loadPost(id);
+  console.log("post con id", post);
+  return post;
 }
-
-//export default postList;

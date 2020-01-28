@@ -1,13 +1,16 @@
 <template>
   <div>
-    <h2>BOOKS</h2>
+    <h2>POSTS</h2>
     <ul>
       <li v-for="post in posts" :key="post.id">
         <router-link :to="'/book/' + post.id">{{ post.id }} - {{ post.postTitle }}</router-link>
+        <!-- <router-link
+          :to="{path:'bookDetail'+post.id, params:{postList:posts}}"
+        >{{ post.id }} - {{ post.postTitle }}</router-link>-->
       </li>
     </ul>
 
-    <a @click="newBook()">New Book</a>
+    <a @click="newPost()">New Post</a>
   </div>
 </template>
 
@@ -24,7 +27,7 @@ export default {
   },
 
   methods: {
-    newBook() {
+    newPost() {
       this.$router.push("/book/new");
     }
   }
