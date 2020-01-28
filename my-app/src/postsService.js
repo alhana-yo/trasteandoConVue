@@ -37,7 +37,7 @@ export async function editPost(info, id) {
 }
 
 export async function deletePost(id) {
-  console.log("peticion borrar base de datos", id);
+  console.log("peticion borrar base de posts", id);
   await axios
     .delete("http://localhost:3000/blogEntries/" + id)
     .then(response => console.log(response));
@@ -47,6 +47,15 @@ export async function saveComment(info, idPost) {
   console.log("peticion base de datos");
   await axios
     .post("http://localhost:3000/blogEntries/" + idPost + "/comments", info)
+    .then(response => console.log(response));
+}
+
+export async function deleteComment(idPost, idComment) {
+  console.log("peticion base de comentario");
+  await axios
+    .delete(
+      "http://localhost:3000/blogEntries/" + idPost + "/comments/" + idComment
+    )
     .then(response => console.log(response));
 }
 
