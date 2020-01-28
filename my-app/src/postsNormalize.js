@@ -3,7 +3,8 @@ import {
   loadPost,
   savePost,
   editPost,
-  deletePost
+  deletePost,
+  saveComment
 } from "./postsService.js";
 
 export async function getList() {
@@ -49,4 +50,15 @@ export async function deleteItem(id) {
   const post = await deletePost(id);
 
   console.log("deleted Post", post);
+}
+
+export async function createComment(info, idPost) {
+  const post = await saveComment(
+    {
+      nickname: info.nickname,
+      text: info.text
+    },
+    idPost
+  );
+  console.log("createPost", post);
 }

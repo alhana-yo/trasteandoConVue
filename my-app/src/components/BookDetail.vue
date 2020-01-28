@@ -18,17 +18,31 @@
         <p>{{comment.nickname}}</p>
         <p>{{comment.date}}</p>
         <p>{{comment.text}}</p>
+        <button @click="editComment()">Edit comment</button>
+        <button @click="deleteComment()">Delete comment</button>
       </li>
     </ul>
-
+    <div>
+      <div>
+        <label>Nickname:</label>
+        <input v-model="newComment.nickname" placeholder="Nickname" />
+      </div>
+      <div>
+        <label>Text:</label>
+        <textarea v-model="newComment.text"></textarea>
+      </div>
+      <button @click="addComment()">Add comment</button>
+    </div>
     <button @click="gotoPosts()">Back</button>
     <button @click="gotoEdit()">Edit</button>
     <button @click="deletePost()">Delete</button>
+    <button @click="showContent()">New comment</button>
   </div>
 </template>
 
 <script>
 import { getPost, deleteItem } from "../postsNormalize.js";
+import { saveComment } from "../postsService";
 
 export default {
   // computed: {
@@ -41,7 +55,8 @@ export default {
   data: function() {
     return {
       post: {},
-      postComments: []
+      postComments: [],
+      newComment: {}
     };
   },
   created: function() {
@@ -64,7 +79,13 @@ export default {
       console.log("id del post a borrar", id);
       deleteItem(id);
       this.$router.push("/books");
-    }
+    },
+    addComment() {
+      const postId = this.$route.params.id;
+      console.log("id del post", postId);
+      saveComment(this.newComment, postId);
+    },
+    showContent() {}
   }
 };
 </script>

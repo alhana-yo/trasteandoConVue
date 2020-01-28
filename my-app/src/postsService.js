@@ -43,6 +43,13 @@ export async function deletePost(id) {
     .then(response => console.log(response));
 }
 
+export async function saveComment(info, idPost) {
+  console.log("peticion base de datos");
+  await axios
+    .post("http://localhost:3000/blogEntries/" + idPost, info)
+    .then(response => console.log(response));
+}
+
 /*
 export async function loadPosts() {
   fetch("http://localhost:3000/blogEntries/")
