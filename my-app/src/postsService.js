@@ -23,15 +23,13 @@ export async function loadPost(id) {
   return result.data;
 }
 
-// export async function createPost() {
-//   let result = await axios
-//     .post("http://localhost:3000/blogEntries/", {
-//       responseType: "json"
-//     })
-//     .then(response => (result = response));
-//   console.log("rsult", result.data);
-//   return result.data;
-// }
+export async function savePost(info) {
+  console.log("peticion base de datos");
+  await axios
+    .post("http://localhost:3000/blogEntries/", info)
+    .then(response => console.log(response));
+  // console.log("rsult", result.data);  ;
+}
 
 /*
 export async function loadPosts() {

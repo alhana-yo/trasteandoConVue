@@ -17,7 +17,7 @@
     </div>
     <div>
       <label>Text:</label>
-      <textarea v-model="post.Text"></textarea>
+      <textarea v-model="post.postText"></textarea>
     </div>
 
     <button @click="gotoBooks()">Cancel</button>
@@ -28,7 +28,7 @@
 <script>
 // import books from "./books.js";
 
-import { getPost } from "../postsNormalize.js";
+import { getPost, createPost } from "../postsNormalize.js";
 
 export default {
   data: () => ({
@@ -41,8 +41,7 @@ export default {
         lastName: "",
         nickname: "",
         postTitle: "",
-        postText: "",
-        postComments: []
+        postText: ""
       };
     } else {
       let id = this.$route.params.id;
@@ -54,6 +53,7 @@ export default {
       this.$router.push("/books");
     },
     save() {
+      createPost(this.post);
       // books.createNewBook(this.book);
       console.log("Dato guardado", this.post);
       this.$router.push("/books");
