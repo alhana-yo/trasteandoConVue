@@ -12,6 +12,15 @@
       {{post.postText}}
     </div>
 
+    <ul>
+      <p>Comments</p>
+      <li v-for="comment in postComments" :key="comment.id">
+        <p>{{comment.nickname}}</p>
+        <p>{{comment.date}}</p>
+        <p>{{comment.text}}</p>
+      </li>
+    </ul>
+
     <button @click="gotoBooks()">Back</button>
     <button @click="gotoEdit()">Edit</button>
     <button @click="deleteBook()">Delete</button>
@@ -31,12 +40,16 @@ export default {
 
   data: function() {
     return {
-      post: undefined
+      post: {},
+      postComments: []
     };
   },
   created: function() {
     let id = this.$route.params.id;
-    getPost(id).then(response => (this.post = response));
+    getPost(id).then(response => {
+      this.post = response;
+      this.postComments = response.postComments;
+    });
   },
   methods: {
     gotoBooks() {
