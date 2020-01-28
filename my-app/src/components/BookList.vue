@@ -4,9 +4,6 @@
     <ul>
       <li v-for="post in posts" :key="post.id">
         <router-link :to="'/book/' + post.id">{{ post.id }} - {{ post.postTitle }}</router-link>
-        <!-- <router-link
-          :to="{path:'bookDetail'+post.id, params:{postList:posts}}"
-        >{{ post.id }} - {{ post.postTitle }}</router-link>-->
       </li>
     </ul>
 

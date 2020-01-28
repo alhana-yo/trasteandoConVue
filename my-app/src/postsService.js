@@ -1,9 +1,9 @@
 import * as axios from "axios";
 
-export async function loadPosts() {
-  //localhost:3000/blogEntries/
-  //http://hp-api.herokuapp.com/api/characters
+//localhost:3000/blogEntries/
+//http://hp-api.herokuapp.com/api/characters
 
+export async function loadPosts() {
   let result = await axios
     .get("http://localhost:3000/blogEntries/", {
       responseType: "json"
@@ -14,9 +14,6 @@ export async function loadPosts() {
 }
 
 export async function loadPost(id) {
-  //localhost:3000/blogEntries/
-  //http://hp-api.herokuapp.com/api/characters
-
   let result = await axios
     .get("http://localhost:3000/blogEntries/" + id, {
       responseType: "json"
@@ -25,6 +22,16 @@ export async function loadPost(id) {
   console.log("rsult", result.data);
   return result.data;
 }
+
+// export async function createPost() {
+//   let result = await axios
+//     .post("http://localhost:3000/blogEntries/", {
+//       responseType: "json"
+//     })
+//     .then(response => (result = response));
+//   console.log("rsult", result.data);
+//   return result.data;
+// }
 
 /*
 export async function loadPosts() {
