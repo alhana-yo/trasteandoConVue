@@ -18,10 +18,17 @@
       {{post.postText}}
     </div>
 
-    <ul>
+    <ul class="list">
       <p>Comments</p>
-      <li v-for="comment in postComments" :key="comment.id">
+      <li
+        v-on:click="getCommentId"
+        class="list--item"
+        v-for="comment in postComments"
+        :key="comment.commentId"
+        :pkey="comment.commentId"
+      >
         <p>{{comment.nickname}}</p>
+        <p>Id: {{comment.commentId}}</p>
         <p>{{comment.date}}</p>
         <p>{{comment.text}}</p>
         <button @click="editComment()">Edit comment</button>
@@ -62,9 +69,9 @@ export default {
   created: function() {
     this.getPost();
   },
-  updated: function() {
-    this.getPost();
-  },
+  // updated: function() {
+  //   this.getPost();
+  // },
   methods: {
     gotoPosts() {
       this.$router.push("/books");
@@ -80,8 +87,6 @@ export default {
     },
     addComment() {
       const postId = this.$route.params.id;
-      console.log("id del post", postId);
-      console.log("el comentario es", this.newComment);
       createComment(this.newComment, postId);
       this.newComment.nickname = "";
       this.newComment.text = "";
@@ -101,7 +106,26 @@ export default {
         this.post = response;
         this.postComments = response.postComments;
       });
+    },
+    editComment() {
+      // let id = this.$route.params.id;
+      // console.log("lista de comentarios", this.post.postComments);
+      // this.post.postComments.forEach(element => {
+      //   console.log("id", element.commentId);
+      // });
+    },
+    getCommentId(e) {
+      console.log("hola", e.currentTarget);
+      console.log("adios", this.pkey);
     }
   }
 };
+
+// function getId(e) {
+//   console.log("evento", e);
+// }
+
+// document
+//   .getElementsByClassName("list")
+//   .addEventListeneraddEventListener("click", getId);
 </script>
