@@ -121,6 +121,7 @@ export default {
           " /"
         );
       });
+      alert(message);
       console.log("mensaje", message);
     },
     editComment() {
