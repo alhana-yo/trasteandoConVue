@@ -47,27 +47,41 @@ export async function saveComment(info, idPost) {
   console.log("peticion base de datos");
   await axios
     .post("http://localhost:3000/blogEntries/" + idPost + "/comments", info)
-    .then(response => console.log(response));
+    // .then(response => console.log("respuesta API REST", response));
+    .then(response => {
+      console.log("response", response);
+      if (response.status === 400) {
+        console.log("status es 400");
+        throw new Error("Your comment has the following forbidden words;");
+      }
+      // return response.json();
+    })
+    .catch(error => {
+      console.log("catch", error.response);
+      const badwords = error.response.data.words;
+      console.log("palabras", badwords);
+      return Promise.reject(badwords);
+    });
 }
 
-export async function updateComment(info, idPost, idComment) {
-  console.log("peticion base de datos");
-  await axios
-    .post(
-      "http://localhost:3000/blogEntries/" + idPost + "/comments" + idComment,
-      info
-    )
-    .then(response => console.log(response));
-}
+// export async function updateComment(info, idPost, idComment) {
+//   console.log("peticion base de datos");
+//   await axios
+//     .post(
+//       "http://localhost:3000/blogEntries/" + idPost + "/comments" + idComment,
+//       info
+//     )
+//     .then(response => console.log(response));
+// }
 
-export async function deleteComment(idPost, idComment) {
-  console.log("peticion base de comentario");
-  await axios
-    .delete(
-      "http://localhost:3000/blogEntries/" + idPost + "/comments/" + idComment
-    )
-    .then(response => console.log(response));
-}
+// export async function deleteComment(idPost, idComment) {
+//   console.log("peticion base de comentario");
+//   await axios
+//     .delete(
+//       "http://localhost:3000/blogEntries/" + idPost + "/comments/" + idComment
+//     )
+//     .then(response => console.log(response));
+// }
 
 /*
 export async function loadPosts() {

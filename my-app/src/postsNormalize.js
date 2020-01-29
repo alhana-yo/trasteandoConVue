@@ -4,8 +4,8 @@ import {
   savePost,
   editPost,
   deletePost,
-  saveComment,
-  updateComment
+  saveComment
+  // updateComment
 } from "./postsService.js";
 
 export async function getList() {
@@ -59,18 +59,22 @@ export async function createComment(info, idPost) {
       text: info.text
     },
     idPost
-  );
+  ).catch(error => {
+    console.log("ultima función", error);
+    return error;
+  });
   console.log("createPost", post);
+  return post;
 }
 
-export async function editComment(info, idPost) {
-  const post = await updateComment(
-    {
-      nickname: info.nickname,
-      text: info.text
-    },
-    idPost,
-    info.commentId
-  );
-  console.log("createPost", post);
-}
+// export async function editComment(info, idPost) {
+//   const post = await updateComment(
+//     {
+//       nickname: info.nickname,
+//       text: info.text
+//     },
+//     idPost,
+//     info.commentId
+//   );
+//   console.log("createPost", post);
+// }

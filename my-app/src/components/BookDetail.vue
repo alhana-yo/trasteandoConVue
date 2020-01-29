@@ -1,8 +1,4 @@
-<style scoped>
-.red {
-  color: red;
-}
-</style>
+
 
 <template>
   <div>
@@ -86,9 +82,13 @@ export default {
       deleteItem(id);
       this.$router.push("/books");
     },
-    addComment() {
+    async addComment() {
       const postId = this.$route.params.id;
-      createComment(this.newComment, postId);
+      const result = await createComment(this.newComment, postId);
+      console.log("resultadooo", result);
+      if (result) {
+        this.sentBadwordsMessage(result);
+      }
       this.newComment.nickname = "";
       this.newComment.text = "";
       this.show = false;
@@ -108,21 +108,28 @@ export default {
         this.postComments = response.postComments;
       });
     },
+    sentBadwordsMessage(badwords) {
+      const message =
+        "you can not post this message because it contains the following forbidden words ";
+      let finalMessage;
+
+      badwords.forEach(element => {
+        console.log(element.badword);
+        finalMessage = message.concat(element.badword, " ", element.level, " ");
+      });
+      console.log("mensaje", finalMessage);
+    },
     editComment() {
-      // let postId = this.$route.params.id;
-      // let clickedCommentId = console.log(
-      //   "lista de comentarios",
-      //   this.post.postComments
-      // );
-      // this.post.postComments.forEach(element => {
-      //   console.log("id", element.commentId);
-      // });
+      //let postId = this.$route.params.id;
+      // if (confirm("Are you sure deleting this post?")) {
+      //   console.log("saved22", this.clickedCommentId);
+      // }
+      console.log("saved22", this.clickedCommentId);
     },
     getClickedCommentId(e) {
-      console.log("hola", e.currentTarget);
-      console.log("adios", e.currentTarget.getAttribute("pkey"));
+      console.log("el target", e.target.getAttribute("pkey"));
       this.clickedCommentId = e.currentTarget.getAttribute("pkey");
-      console.log("saved", this.clickedCommentId);
+      console.log("el current", this.clickedCommentId);
     }
   }
 };
