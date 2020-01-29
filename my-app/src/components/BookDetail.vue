@@ -85,7 +85,6 @@ export default {
     async addComment() {
       const postId = this.$route.params.id;
       const result = await createComment(this.newComment, postId);
-      console.log("resultadooo", result);
       if (result) {
         this.sentBadwordsMessage(result);
       }
@@ -95,11 +94,9 @@ export default {
     },
     showContent() {
       this.show = true;
-      console.log("showcontent", this.show);
     },
     notShowContent() {
       this.show = false;
-      console.log("not showcontent", this.show);
     },
     getPost() {
       let id = this.$route.params.id;
@@ -113,7 +110,6 @@ export default {
         "you can not post this message because it contains the following forbidden words: ";
 
       badwords.forEach(element => {
-        console.log(element.badword);
         message = message.concat(
           element.badword,
           " with level ",
@@ -122,7 +118,6 @@ export default {
         );
       });
       alert(message);
-      console.log("mensaje", message);
     },
     editComment() {
       //let postId = this.$route.params.id;

@@ -1,8 +1,5 @@
 import * as axios from "axios";
 
-//localhost:3000/blogEntries/
-//http://hp-api.herokuapp.com/api/characters
-
 export async function loadPosts() {
   let result = await axios
     .get("http://localhost:3000/blogEntries/", {
@@ -18,43 +15,32 @@ export async function loadPost(id) {
       responseType: "json"
     })
     .then(response => (result = response));
-  console.log("rsult", result.data);
   return result.data;
 }
 
 export async function savePost(info) {
-  console.log("peticion base de datos");
   await axios
     .post("http://localhost:3000/blogEntries/", info)
     .then(response => console.log(response));
 }
 
 export async function editPost(info, id) {
-  console.log("peticion editar base de datos", id);
   await axios
     .put("http://localhost:3000/blogEntries/" + id, info)
     .then(response => console.log(response));
 }
 
 export async function deletePost(id) {
-  console.log("peticion borrar base de posts", id);
   await axios
     .delete("http://localhost:3000/blogEntries/" + id)
     .then(response => console.log(response));
 }
 
 export async function saveComment(info, idPost) {
-  console.log("peticion base de datos");
   await axios
     .post("http://localhost:3000/blogEntries/" + idPost + "/comments", info)
-    // .then(response => console.log("respuesta API REST", response));
     .then(response => {
-      console.log("response", response);
-      if (response.status === 400) {
-        console.log("status es 400");
-        throw new Error("Your comment has the following forbidden words;");
-      }
-      // return response.json();
+      console.log("respuesta API REST", response);
     })
     .catch(error => {
       console.log("catch", error.response);

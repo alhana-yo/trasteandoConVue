@@ -37,11 +37,11 @@ export default {
   beforeMount: function() {
     if (!this.$route.params.id) {
       this.post = {
-        name: "",
-        lastName: "",
-        nickname: "",
-        postTitle: "",
-        postText: ""
+        name: undefined,
+        lastName: undefined,
+        nickname: undefined,
+        postTitle: undefined,
+        postText: undefined
       };
     } else {
       let id = this.$route.params.id;
@@ -54,8 +54,6 @@ export default {
     },
     save() {
       createPost(this.post);
-      // books.createNewBook(this.book);
-      console.log("Dato guardado", this.post);
       this.$router.push("/books");
     }
   }

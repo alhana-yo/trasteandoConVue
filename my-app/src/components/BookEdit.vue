@@ -48,7 +48,6 @@ export default {
       this.$router.push("/books");
     },
     saveEdition() {
-      console.log("info a editar", this.post);
       let id = this.$route.params.id;
 
       edit(this.post, id);

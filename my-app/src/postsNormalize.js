@@ -60,10 +60,9 @@ export async function createComment(info, idPost) {
     },
     idPost
   ).catch(error => {
-    console.log("ultima función", error);
     return error;
   });
-  console.log("createPost", post);
+  //Inside 'post' we have the badwords (if comment has them)
   return post;
 }
 
