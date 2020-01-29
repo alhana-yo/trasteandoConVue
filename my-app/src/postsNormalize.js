@@ -46,7 +46,6 @@ export async function edit(info, id) {
 }
 
 export async function deleteItem(id) {
-  console.log("he entrado en el normalizer en metodo editPost", id);
   const post = await deletePost(id);
 
   console.log("deleted Post", post);

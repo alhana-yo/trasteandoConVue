@@ -60,11 +60,10 @@ export default {
     };
   },
   created: function() {
-    let id = this.$route.params.id;
-    getPost(id).then(response => {
-      this.post = response;
-      this.postComments = response.postComments;
-    });
+    this.getPost();
+  },
+  updated: function() {
+    this.getPost();
   },
   methods: {
     gotoPosts() {
@@ -84,6 +83,9 @@ export default {
       console.log("id del post", postId);
       console.log("el comentario es", this.newComment);
       createComment(this.newComment, postId);
+      this.newComment.nickname = "";
+      this.newComment.text = "";
+      this.show = false;
     },
     showContent() {
       this.show = true;
@@ -92,6 +94,13 @@ export default {
     notShowContent() {
       this.show = false;
       console.log("not showcontent", this.show);
+    },
+    getPost() {
+      let id = this.$route.params.id;
+      getPost(id).then(response => {
+        this.post = response;
+        this.postComments = response.postComments;
+      });
     }
   }
 };
