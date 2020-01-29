@@ -109,15 +109,19 @@ export default {
       });
     },
     sentBadwordsMessage(badwords) {
-      const message =
-        "you can not post this message because it contains the following forbidden words ";
-      let finalMessage;
+      let message =
+        "you can not post this message because it contains the following forbidden words: ";
 
       badwords.forEach(element => {
         console.log(element.badword);
-        finalMessage = message.concat(element.badword, " ", element.level, " ");
+        message = message.concat(
+          element.badword,
+          " with level ",
+          element.level,
+          " /"
+        );
       });
-      console.log("mensaje", finalMessage);
+      console.log("mensaje", message);
     },
     editComment() {
       //let postId = this.$route.params.id;
