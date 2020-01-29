@@ -21,7 +21,7 @@
     <ul class="list">
       <p>Comments</p>
       <li
-        v-on:click="getCommentId"
+        v-on:click="getClickedCommentId"
         class="list--item"
         v-for="comment in postComments"
         :key="comment.commentId"
@@ -63,7 +63,8 @@ export default {
       post: {},
       postComments: [],
       newComment: {},
-      show: false
+      show: false,
+      clickedCommentId: undefined
     };
   },
   created: function() {
@@ -108,24 +109,21 @@ export default {
       });
     },
     editComment() {
-      // let id = this.$route.params.id;
-      // console.log("lista de comentarios", this.post.postComments);
+      // let postId = this.$route.params.id;
+      // let clickedCommentId = console.log(
+      //   "lista de comentarios",
+      //   this.post.postComments
+      // );
       // this.post.postComments.forEach(element => {
       //   console.log("id", element.commentId);
       // });
     },
-    getCommentId(e) {
+    getClickedCommentId(e) {
       console.log("hola", e.currentTarget);
-      console.log("adios", this.pkey);
+      console.log("adios", e.currentTarget.getAttribute("pkey"));
+      this.clickedCommentId = e.currentTarget.getAttribute("pkey");
+      console.log("saved", this.clickedCommentId);
     }
   }
 };
-
-// function getId(e) {
-//   console.log("evento", e);
-// }
-
-// document
-//   .getElementsByClassName("list")
-//   .addEventListeneraddEventListener("click", getId);
 </script>
