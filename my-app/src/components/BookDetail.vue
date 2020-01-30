@@ -66,9 +66,7 @@ export default {
       editedCommentId: undefined
     };
   },
-  created: function() {
-    this.getPost();
-  },
+
   beforeRouteEnter(to, from, next) {
     let id = to.params.id;
     getPost(id).then(response => {
@@ -78,11 +76,6 @@ export default {
       });
     });
   },
-
-  // updated: function() {
-  //   console.log("hola");
-  //   this.getPost();
-  // },
 
   methods: {
     gotoPosts() {
@@ -102,7 +95,10 @@ export default {
         alert("You need to complete all the fields");
       } else {
         const postId = this.$route.params.id;
-        const result = await createComment(this.newComment, postId);
+        const result = await createComment(
+          this.newComment,
+          postId
+        ).then(() => {});
         this.testText(result);
       }
       // const postId = this.$route.params.id;
@@ -119,7 +115,7 @@ export default {
     notShowContent() {
       this.show = false;
     },
-    getPost() {},
+    // getPost() {},
     sentBadwordsMessage(badwords) {
       let message =
         "you can not post this message because it contains the following forbidden words: ";
