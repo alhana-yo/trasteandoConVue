@@ -95,10 +95,7 @@ export default {
         alert("You need to complete all the fields");
       } else {
         const postId = this.$route.params.id;
-        const result = await createComment(
-          this.newComment,
-          postId
-        ).then(() => {});
+        const result = await createComment(this.newComment, postId);
         this.testText(result);
       }
       // const postId = this.$route.params.id;
@@ -115,7 +112,6 @@ export default {
     notShowContent() {
       this.show = false;
     },
-    // getPost() {},
     sentBadwordsMessage(badwords) {
       let message =
         "you can not post this message because it contains the following forbidden words: ";
