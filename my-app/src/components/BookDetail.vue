@@ -126,11 +126,17 @@ export default {
       this.show = true;
       this.edit = true;
       this.add = false;
-      // let postId = this.$route.params.id;
-      // if (confirm("Are you sure deleting this post?")) {
+      const position = this.postComments
+        .map(x => x.commentId)
+        .indexOf(commentId);
+      this.newComment.nickname = this.postComments[position].nickname;
+      this.newComment.text = this.postComments[position].text;
 
-      // }
+      // let postId = this.$route.params.id;
+
       console.log("editando", commentId);
+      console.log("lista", this.postComments);
+      console.log("posicion", position);
     },
     deleteComment(commentId) {
       let postId = this.$route.params.id;
