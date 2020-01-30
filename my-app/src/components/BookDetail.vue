@@ -50,6 +50,7 @@ import {
   getPost,
   deleteItem,
   createComment,
+  editComment,
   deleteReview
 } from "../postsNormalize.js";
 
@@ -61,7 +62,8 @@ export default {
       newComment: {},
       show: false,
       add: false,
-      edit: false
+      edit: false,
+      editedCommentId: undefined
     };
   },
   created: function() {
@@ -131,12 +133,11 @@ export default {
         .indexOf(commentId);
       this.newComment.nickname = this.postComments[position].nickname;
       this.newComment.text = this.postComments[position].text;
-
-      // let postId = this.$route.params.id;
-
-      console.log("editando", commentId);
-      console.log("lista", this.postComments);
-      console.log("posicion", position);
+      this.editedCommentId = commentId;
+    },
+    addEditedComment() {
+      let postId = this.$route.params.id;
+      editComment(this.newComment, postId, this.editedCommentId);
     },
     deleteComment(commentId) {
       let postId = this.$route.params.id;

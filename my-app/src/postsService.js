@@ -50,15 +50,14 @@ export async function saveComment(info, idPost) {
     });
 }
 
-// export async function updateComment(info, idPost, idComment) {
-//   console.log("peticion base de datos");
-//   await axios
-//     .post(
-//       "http://localhost:3000/blogEntries/" + idPost + "/comments" + idComment,
-//       info
-//     )
-//     .then(response => console.log(response));
-// }
+export async function updateComment(info, idPost, idComment) {
+  await axios
+    .put(
+      "http://localhost:3000/blogEntries/" + idPost + "/comments/" + idComment,
+      info
+    )
+    .then(response => console.log(response));
+}
 
 export async function deleteComment(idPost, idComment) {
   await axios

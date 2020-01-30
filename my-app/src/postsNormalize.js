@@ -5,8 +5,8 @@ import {
   editPost,
   deletePost,
   saveComment,
+  updateComment,
   deleteComment
-  // updateComment
 } from "./postsService.js";
 
 export async function getList() {
@@ -67,17 +67,17 @@ export async function createComment(info, idPost) {
   return post;
 }
 
-// export async function editComment(info, idPost) {
-//   const post = await updateComment(
-//     {
-//       nickname: info.nickname,
-//       text: info.text
-//     },
-//     idPost,
-//     info.commentId
-//   );
-//   console.log("createPost", post);
-// }
+export async function editComment(info, idPost, idComment) {
+  const post = await updateComment(
+    {
+      nickname: info.nickname,
+      text: info.text
+    },
+    idPost,
+    idComment
+  );
+  console.log("createPost", post);
+}
 
 export async function deleteReview(idPost, idComment) {
   const post = await deleteComment(idPost, idComment);
