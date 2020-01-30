@@ -96,6 +96,7 @@ export default {
     showContent() {
       this.show = true;
       this.add = true;
+      this.edit = false;
     },
     notShowContent() {
       this.show = false;
