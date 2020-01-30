@@ -4,7 +4,8 @@ import {
   savePost,
   editPost,
   deletePost,
-  saveComment
+  saveComment,
+  deleteComment
   // updateComment
 } from "./postsService.js";
 
@@ -77,3 +78,9 @@ export async function createComment(info, idPost) {
 //   );
 //   console.log("createPost", post);
 // }
+
+export async function deleteReview(idPost, idComment) {
+  const post = await deleteComment(idPost, idComment);
+
+  console.log("deleted Post", post);
+}

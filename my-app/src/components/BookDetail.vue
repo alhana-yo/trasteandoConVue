@@ -16,19 +16,13 @@
 
     <ul class="list">
       <p>Comments</p>
-      <li
-        v-on:click="getClickedCommentId"
-        class="list--item"
-        v-for="comment in postComments"
-        :key="comment.commentId"
-        :pkey="comment.commentId"
-      >
+      <li class="list--item" v-for="comment in postComments" :key="comment.commentId">
         <p>{{comment.nickname}}</p>
         <p>Id: {{comment.commentId}}</p>
         <p>{{comment.date}}</p>
         <p>{{comment.text}}</p>
-        <button @click="editComment()">Edit comment</button>
-        <button @click="deleteComment()">Delete comment</button>
+        <button @click="editComment(comment.commentId)">Edit comment</button>
+        <button @click="deleteComment(comment.commentId)">Delete comment</button>
       </li>
     </ul>
     <div v-if="this.show">
@@ -51,7 +45,12 @@
 </template>
 
 <script>
-import { getPost, deleteItem, createComment } from "../postsNormalize.js";
+import {
+  getPost,
+  deleteItem,
+  createComment,
+  deleteReview
+} from "../postsNormalize.js";
 
 export default {
   data: function() {
@@ -59,8 +58,7 @@ export default {
       post: {},
       postComments: [],
       newComment: {},
-      show: false,
-      clickedCommentId: undefined
+      show: false
     };
   },
   created: function() {
@@ -119,17 +117,19 @@ export default {
       });
       alert(message);
     },
-    editComment() {
-      //let postId = this.$route.params.id;
+    editComment(commentId) {
+      // let postId = this.$route.params.id;
       // if (confirm("Are you sure deleting this post?")) {
-      //   console.log("saved22", this.clickedCommentId);
+
       // }
-      console.log("saved22", this.clickedCommentId);
+      console.log("saved22", commentId);
     },
-    getClickedCommentId(e) {
-      console.log("el target", e.target.getAttribute("pkey"));
-      this.clickedCommentId = e.currentTarget.getAttribute("pkey");
-      console.log("el current", this.clickedCommentId);
+    deleteComment(commentId) {
+      let postId = this.$route.params.id;
+      if (confirm("Are you sure deleting this comment?")) {
+        deleteReview(postId, commentId);
+        console.log("saved22", commentId);
+      }
     }
   }
 };

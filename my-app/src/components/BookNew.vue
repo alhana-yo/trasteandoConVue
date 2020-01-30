@@ -55,6 +55,23 @@ export default {
     save() {
       createPost(this.post);
       this.$router.push("/books");
+      // console.log("lelele", this.name);
+      // if (
+      //   !(
+      //     this.name &&
+      //     this.lastName &&
+      //     this.nickname &&
+      //     this.postTitle &&
+      //     this.postText
+      //   )
+      // ) {
+      //   console.log("dentro ");
+
+      //   alert("You need to complete all the fields");
+      // } else {
+      //   createPost(this.post);
+      //   this.$router.push("/books");
+      // }
     }
   }
 };

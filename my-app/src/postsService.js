@@ -60,14 +60,13 @@ export async function saveComment(info, idPost) {
 //     .then(response => console.log(response));
 // }
 
-// export async function deleteComment(idPost, idComment) {
-//   console.log("peticion base de comentario");
-//   await axios
-//     .delete(
-//       "http://localhost:3000/blogEntries/" + idPost + "/comments/" + idComment
-//     )
-//     .then(response => console.log(response));
-// }
+export async function deleteComment(idPost, idComment) {
+  await axios
+    .delete(
+      "http://localhost:3000/blogEntries/" + idPost + "/comments/" + idComment
+    )
+    .then(response => console.log(response));
+}
 
 /*
 export async function loadPosts() {
