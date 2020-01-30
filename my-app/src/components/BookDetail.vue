@@ -88,12 +88,7 @@ export default {
     async addComment() {
       const postId = this.$route.params.id;
       const result = await createComment(this.newComment, postId);
-      if (result) {
-        this.sentBadwordsMessage(result);
-      }
-      this.newComment.nickname = "";
-      this.newComment.text = "";
-      this.show = false;
+      this.testText(result);
     },
     showContent() {
       this.show = true;
@@ -142,6 +137,9 @@ export default {
         postId,
         this.editedCommentId
       );
+      this.testText(result);
+    },
+    testText(result) {
       if (result) {
         this.sentBadwordsMessage(result);
       }
