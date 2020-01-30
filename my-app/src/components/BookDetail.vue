@@ -110,6 +110,8 @@ export default {
       // this.testText(result);
     },
     showContent() {
+      this.newComment.nickname = "";
+      this.newComment.text = "";
       this.show = true;
       this.add = true;
       this.edit = false;
