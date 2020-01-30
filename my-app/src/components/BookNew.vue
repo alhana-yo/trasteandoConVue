@@ -53,25 +53,20 @@ export default {
       this.$router.push("/books");
     },
     save() {
-      createPost(this.post);
-      this.$router.push("/books");
-      // console.log("lelele", this.name);
-      // if (
-      //   !(
-      //     this.name &&
-      //     this.lastName &&
-      //     this.nickname &&
-      //     this.postTitle &&
-      //     this.postText
-      //   )
-      // ) {
-      //   console.log("dentro ");
-
-      //   alert("You need to complete all the fields");
-      // } else {
-      //   createPost(this.post);
-      //   this.$router.push("/books");
-      // }
+      if (
+        !(
+          this.post.name &&
+          this.post.lastName &&
+          this.post.nickname &&
+          this.post.postTitle &&
+          this.post.postText
+        )
+      ) {
+        alert("You need to complete all the fields");
+      } else {
+        createPost(this.post);
+        this.$router.push("/books");
+      }
     }
   }
 };
