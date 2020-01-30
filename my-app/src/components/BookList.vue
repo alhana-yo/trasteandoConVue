@@ -22,16 +22,15 @@ export default {
   created: function() {
     getList().then(response => (this.posts = response));
   },
-  // vm es el componente
-
   beforeRouteEnter(to, from, next) {
     console.log("beforeRouteEnter", to);
     console.log("beforeRouteEnter", from);
     console.log("beforeRouteEnter", next);
     getList().then(response => {
+      // vm es el componente
       next(vm => {
         vm.posts = response;
-        console.log("vm", vm);
+        // console.log("vm", vm);
       });
     });
   },

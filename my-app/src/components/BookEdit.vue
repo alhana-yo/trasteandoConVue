@@ -51,8 +51,7 @@ export default {
     saveEdition() {
       let id = this.$route.params.id;
 
-      edit(this.post, id);
-      this.$router.push("/book/" + id);
+      edit(this.post, id).then(() => this.$router.push("/book/" + id));
     }
   }
 };

@@ -69,9 +69,21 @@ export default {
   created: function() {
     this.getPost();
   },
+  beforeRouteEnter(to, from, next) {
+    let id = to.params.id;
+    getPost(id).then(response => {
+      next(vm => {
+        vm.post = response;
+        vm.postComments = response.postComments;
+      });
+    });
+  },
+
   // updated: function() {
+  //   console.log("hola");
   //   this.getPost();
   // },
+
   methods: {
     gotoPosts() {
       this.$router.push("/books");
@@ -105,13 +117,7 @@ export default {
     notShowContent() {
       this.show = false;
     },
-    getPost() {
-      let id = this.$route.params.id;
-      getPost(id).then(response => {
-        this.post = response;
-        this.postComments = response.postComments;
-      });
-    },
+    getPost() {},
     sentBadwordsMessage(badwords) {
       let message =
         "you can not post this message because it contains the following forbidden words: ";
