@@ -34,7 +34,8 @@
         <label>Text:</label>
         <textarea v-model="newComment.text"></textarea>
       </div>
-      <button @click="addComment()">Add comment</button>
+      <button v-if="this.add" @click="addComment()">Add comment</button>
+      <button v-if="this.edit" @click="addEditedComment()">Add edition</button>
       <button @click="notShowContent()">Cancel</button>
     </div>
     <button @click="gotoPosts()">Back</button>
@@ -58,7 +59,9 @@ export default {
       post: {},
       postComments: [],
       newComment: {},
-      show: false
+      show: false,
+      add: false,
+      edit: false
     };
   },
   created: function() {
@@ -92,6 +95,7 @@ export default {
     },
     showContent() {
       this.show = true;
+      this.add = true;
     },
     notShowContent() {
       this.show = false;
@@ -118,17 +122,19 @@ export default {
       alert(message);
     },
     editComment(commentId) {
+      this.show = true;
+      this.edit = true;
+      this.add = false;
       // let postId = this.$route.params.id;
       // if (confirm("Are you sure deleting this post?")) {
 
       // }
-      console.log("saved22", commentId);
+      console.log("editando", commentId);
     },
     deleteComment(commentId) {
       let postId = this.$route.params.id;
       if (confirm("Are you sure deleting this comment?")) {
         deleteReview(postId, commentId);
-        console.log("saved22", commentId);
       }
     }
   }
