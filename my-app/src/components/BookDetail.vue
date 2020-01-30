@@ -86,9 +86,16 @@ export default {
       this.$router.push("/books");
     },
     async addComment() {
-      const postId = this.$route.params.id;
-      const result = await createComment(this.newComment, postId);
-      this.testText(result);
+      if (!(this.newComment.nickname && this.newComment.text)) {
+        alert("You need to complete all the fields");
+      } else {
+        const postId = this.$route.params.id;
+        const result = await createComment(this.newComment, postId);
+        this.testText(result);
+      }
+      // const postId = this.$route.params.id;
+      // const result = await createComment(this.newComment, postId);
+      // this.testText(result);
     },
     showContent() {
       this.show = true;
