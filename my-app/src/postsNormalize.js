@@ -53,18 +53,21 @@ export async function deleteItem(id) {
   console.log("deleted Post", post);
 }
 
-export async function createComment(info, idPost) {
-  const post = await saveComment(
+// export async function createComment(info, idPost) {
+export function createComment(info, idPost) {
+  // const post = await saveComment(
+  return saveComment(
     {
       nickname: info.nickname,
       text: info.text
     },
     idPost
-  ).catch(error => {
-    return error;
-  });
+  );
+  // .catch(error => {
+  //   return error;
+  // });
   //Inside 'post' we have the badwords (if comment has them)
-  return post;
+  //return post;
 }
 
 export async function editComment(info, idPost, idComment) {

@@ -37,11 +37,12 @@ export async function deletePost(id) {
 }
 
 export async function saveComment(info, idPost) {
-  await axios
+  //await axios
+  return await axios
     .post("http://localhost:3000/blogEntries/" + idPost + "/comments", info)
-    .then(response => {
-      console.log("respuesta API REST", response);
-    })
+    // .then(response => {
+    //   console.log("respuesta API REST", response);
+    // })
     .catch(error => {
       const badwords = error.response.data.words;
       return Promise.reject(badwords);

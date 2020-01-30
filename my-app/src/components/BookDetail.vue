@@ -90,13 +90,15 @@ export default {
       deleteItem(id);
       this.$router.push("/books");
     },
-    async addComment() {
+    addComment() {
       if (!(this.newComment.nickname && this.newComment.text)) {
         alert("You need to complete all the fields");
       } else {
         const postId = this.$route.params.id;
-        const result = await createComment(this.newComment, postId);
-        this.testText(result);
+        // const result = await createComment(this.newComment, postId);
+        createComment(this.newComment, postId)
+          .then(response => this.postComments.push(response.data))
+          .catch(badwords => this.testText(badwords));
       }
       // const postId = this.$route.params.id;
       // const result = await createComment(this.newComment, postId);
