@@ -75,8 +75,11 @@ export async function editComment(info, idPost, idComment) {
     },
     idPost,
     idComment
-  );
-  console.log("createPost", post);
+  ).catch(error => {
+    return error;
+  });
+  //Inside 'post' we have the badwords (if comment has them)
+  return post;
 }
 
 export async function deleteReview(idPost, idComment) {

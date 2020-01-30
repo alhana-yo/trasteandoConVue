@@ -43,9 +43,7 @@ export async function saveComment(info, idPost) {
       console.log("respuesta API REST", response);
     })
     .catch(error => {
-      console.log("catch", error.response);
       const badwords = error.response.data.words;
-      console.log("palabras", badwords);
       return Promise.reject(badwords);
     });
 }
@@ -56,7 +54,13 @@ export async function updateComment(info, idPost, idComment) {
       "http://localhost:3000/blogEntries/" + idPost + "/comments/" + idComment,
       info
     )
-    .then(response => console.log(response));
+    .then(response => {
+      console.log("respuesta API REST", response);
+    })
+    .catch(error => {
+      const badwords = error.response.data.words;
+      return Promise.reject(badwords);
+    });
 }
 
 export async function deleteComment(idPost, idComment) {

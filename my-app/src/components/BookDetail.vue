@@ -21,7 +21,7 @@
         <p>Id: {{comment.commentId}}</p>
         <p>{{comment.date}}</p>
         <p>{{comment.text}}</p>
-        <button @click="editComment(comment.commentId)">Edit comment</button>
+        <button @click="editTheComment(comment.commentId)">Edit comment</button>
         <button @click="deleteComment(comment.commentId)">Delete comment</button>
       </li>
     </ul>
@@ -124,7 +124,7 @@ export default {
       });
       alert(message);
     },
-    editComment(commentId) {
+    editTheComment(commentId) {
       this.show = true;
       this.edit = true;
       this.add = false;
@@ -135,9 +135,19 @@ export default {
       this.newComment.text = this.postComments[position].text;
       this.editedCommentId = commentId;
     },
-    addEditedComment() {
+    async addEditedComment() {
       let postId = this.$route.params.id;
-      editComment(this.newComment, postId, this.editedCommentId);
+      const result = await editComment(
+        this.newComment,
+        postId,
+        this.editedCommentId
+      );
+      if (result) {
+        this.sentBadwordsMessage(result);
+      }
+      this.newComment.nickname = "";
+      this.newComment.text = "";
+      this.show = false;
     },
     deleteComment(commentId) {
       let postId = this.$route.params.id;
