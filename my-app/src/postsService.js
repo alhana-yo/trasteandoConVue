@@ -50,14 +50,16 @@ export async function saveComment(info, idPost) {
 }
 
 export async function updateComment(info, idPost, idComment) {
-  await axios
+  // await axios
+  return await axios
+
     .put(
       "http://localhost:3000/blogEntries/" + idPost + "/comments/" + idComment,
       info
     )
-    .then(response => {
-      console.log("respuesta API REST", response);
-    })
+    // .then(response => {
+    //   console.log("respuesta API REST", response);
+    // })
     .catch(error => {
       const badwords = error.response.data.words;
       return Promise.reject(badwords);

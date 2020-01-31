@@ -145,12 +145,30 @@ export default {
     },
     async addEditedComment() {
       let postId = this.$route.params.id;
-      const result = await editComment(
-        this.newComment,
-        postId,
-        this.editedCommentId
-      );
-      this.testText(result);
+      // const result = await editComment(
+      //   this.newComment,
+      //   postId,
+      //   this.editedCommentId
+      // );
+      // this.testText(result);
+      editComment(this.newComment, postId, this.editedCommentId)
+        // .then(response => this.postComments.push(response.data));
+        .then(response => {
+          console.log("respuesta de edicion", response.data);
+          this.replaceItem(response.data.commentId, response.data);
+        })
+
+        .catch(badwords => this.testText(badwords));
+    },
+    replaceItem(commentId, newInfo) {
+      for (let i = 0; i < this.postComments.length; i++) {
+        if (this.postComments[i].commentId == commentId) {
+          console.log("posicion", i);
+          this.postComments[i] = newInfo;
+          console.log(this.postComments[i]);
+          console.log(this.postComments);
+        }
+      }
     },
     testText(result) {
       if (result) {

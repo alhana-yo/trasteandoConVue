@@ -70,19 +70,22 @@ export function createComment(info, idPost) {
   //return post;
 }
 
-export async function editComment(info, idPost, idComment) {
-  const post = await updateComment(
+// export async function editComment(info, idPost, idComment) {
+export function editComment(info, idPost, idComment) {
+  // const post = await updateComment(
+  return updateComment(
     {
       nickname: info.nickname,
       text: info.text
     },
     idPost,
     idComment
-  ).catch(error => {
-    return error;
-  });
-  //Inside 'post' we have the badwords (if comment has them)
-  return post;
+  );
+  // ).catch(error => {
+  //   return error;
+  // });
+  // //Inside 'post' we have the badwords (if comment has them)
+  // return post;
 }
 
 export async function deleteReview(idPost, idComment) {
