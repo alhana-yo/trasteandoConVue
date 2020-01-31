@@ -99,12 +99,16 @@ export default {
         createComment(this.newComment, postId)
           .then(response => this.postComments.push(response.data))
           .catch(badwords => this.testText(badwords));
+        this.newComment.nickname = "";
+        this.newComment.text = "";
+        this.show = false;
       }
       // const postId = this.$route.params.id;
       // const result = await createComment(this.newComment, postId);
       // this.testText(result);
     },
     showContent() {
+      console.log("holiii");
       this.newComment.nickname = "";
       this.newComment.text = "";
       this.show = true;
