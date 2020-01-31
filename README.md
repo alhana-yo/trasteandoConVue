@@ -1,10 +1,10 @@
-##Install dependencies
+## Install dependencies
 
 You can install all dependencies in package.json files on one step using:
 
 `npm install`
 
-##Run the App
+## Run the App
 
 You can run the vue client with:
 
