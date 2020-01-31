@@ -167,7 +167,10 @@ export default {
     deleteComment(commentId) {
       let postId = this.$route.params.id;
       if (confirm("Are you sure deleting this comment?")) {
-        deleteReview(postId, commentId);
+        deleteReview(postId, commentId).then(response => {
+          this.post = response.data;
+          this.postComments = response.data.postComments;
+        });
       }
     }
   }

@@ -59,9 +59,7 @@ export async function updateComment(info, idPost, idComment) {
 }
 
 export async function deleteComment(idPost, idComment) {
-  await axios
-    .delete(
-      "http://localhost:3000/blogEntries/" + idPost + "/comments/" + idComment
-    )
-    .then(response => console.log(response));
+  return await axios.delete(
+    "http://localhost:3000/blogEntries/" + idPost + "/comments/" + idComment
+  );
 }

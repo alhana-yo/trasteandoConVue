@@ -74,8 +74,6 @@ export function editComment(info, idPost, idComment) {
   );
 }
 
-export async function deleteReview(idPost, idComment) {
-  const post = await deleteComment(idPost, idComment);
-
-  console.log("deleted Post", post);
+export function deleteReview(idPost, idComment) {
+  return deleteComment(idPost, idComment);
 }
