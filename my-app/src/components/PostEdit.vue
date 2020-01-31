@@ -17,7 +17,7 @@
       <textarea v-model="post.postText"></textarea>
     </div>
 
-    <button @click="gotoBook()">Cancel</button>
+    <button @click="gotoPost()">Cancel</button>
     <button @click="saveEdition()">Save</button>
   </div>
 </template>
@@ -44,14 +44,14 @@ export default {
     }
   },
   methods: {
-    gotoBook() {
+    gotoPost() {
       let id = this.$route.params.id;
-      this.$router.push("/book/" + id);
+      this.$router.push("/post/" + id);
     },
     saveEdition() {
       let id = this.$route.params.id;
 
-      edit(this.post, id).then(() => this.$router.push("/book/" + id));
+      edit(this.post, id).then(() => this.$router.push("/post/" + id));
     }
   }
 };

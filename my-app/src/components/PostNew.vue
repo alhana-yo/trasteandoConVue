@@ -1,10 +1,7 @@
 <template>
   <div>
-    <h2>{{post.title}}</h2>
-    <!-- <p>
-      <span>Id:</span>
-      {{post.id}}
-    </p>-->
+    <h2>{{ post.title }}</h2>
+
     <div>
       <label>Author:</label>
       <input v-model="post.name" placeholder="Name" />
@@ -20,14 +17,12 @@
       <textarea v-model="post.postText"></textarea>
     </div>
 
-    <button @click="gotoBooks()">Cancel</button>
+    <button @click="gotoPosts()">Cancel</button>
     <button @click="save()">Save</button>
   </div>
 </template>
 
 <script>
-// import books from "./books.js";
-
 import { getPost, createPost } from "../postsNormalize.js";
 
 export default {
@@ -49,8 +44,8 @@ export default {
     }
   },
   methods: {
-    gotoBooks() {
-      this.$router.push("/books");
+    gotoPosts() {
+      this.$router.push("/posts");
     },
     save() {
       if (
@@ -65,7 +60,7 @@ export default {
         alert("You need to complete all the fields");
       } else {
         createPost(this.post);
-        this.$router.push("/books");
+        this.$router.push("/posts");
       }
     }
   }

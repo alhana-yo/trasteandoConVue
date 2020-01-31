@@ -3,7 +3,9 @@
     <h2>POSTS</h2>
     <ul>
       <li v-for="post in posts" :key="post.id">
-        <router-link :to="'/book/' + post.id">{{ post.id }} - {{ post.postTitle }}</router-link>
+        <router-link :to="'/post/' + post.id"
+          >{{ post.id }} - {{ post.postTitle }}</router-link
+        >
       </li>
     </ul>
 
@@ -32,7 +34,7 @@ export default {
   },
   methods: {
     newPost() {
-      this.$router.push("/book/new");
+      this.$router.push("/post/new");
     }
   }
 };
