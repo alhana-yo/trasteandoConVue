@@ -154,8 +154,8 @@ export default {
       editComment(this.newComment, postId, this.editedCommentId)
         // .then(response => this.postComments.push(response.data));
         .then(response => {
-          console.log("respuesta de edicion", response.data);
           this.replaceItem(response.data.commentId, response.data);
+          this.show = false;
         })
 
         .catch(badwords => this.testText(badwords));
@@ -163,10 +163,7 @@ export default {
     replaceItem(commentId, newInfo) {
       for (let i = 0; i < this.postComments.length; i++) {
         if (this.postComments[i].commentId == commentId) {
-          console.log("posicion", i);
           this.postComments[i] = newInfo;
-          console.log(this.postComments[i]);
-          console.log(this.postComments);
         }
       }
     },
