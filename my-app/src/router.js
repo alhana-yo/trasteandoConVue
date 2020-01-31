@@ -1,10 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import BookList from "./components/BookList.vue";
-import BookDetail from "./components/BookDetail.vue";
-import BookNew from "./components/BookNew.vue";
-import BookEdit from "./components/BookEdit.vue";
+import PostList from "./components/PostList.vue";
+import PostDetail from "./components/PostDetail.vue";
+import PostNew from "./components/PostNew.vue";
+import PostEdit from "./components/PostEdit.vue";
 
 Vue.use(Router);
 
@@ -12,10 +12,10 @@ export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
-    { path: "/", redirect: "/books" },
-    { path: "/books", name: "bookslist", component: BookList },
-    { path: "/book/edit/:id", name: "BookEdit", component: BookEdit },
-    { path: "/book/new", name: "bookNew", component: BookNew },
-    { path: "/book/:id", name: "bookDetail", component: BookDetail }
+    { path: "/", redirect: "/posts" },
+    { path: "/posts", name: "postslist", component: PostList },
+    { path: "/post/edit/:id", name: "postEdit", component: PostEdit },
+    { path: "/post/new", name: "postNew", component: PostNew },
+    { path: "/post/:id", name: "postDetail", component: PostDetail }
   ]
 });

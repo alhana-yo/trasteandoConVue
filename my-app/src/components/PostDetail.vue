@@ -1,28 +1,32 @@
-
-
 <template>
   <div>
-    <h2>{{post.postTitle}}</h2>
-    <p>{{post.name}} {{post.lastName}}</p>
-    <p>{{post.nickname}}</p>
+    <h2>{{ post.postTitle }}</h2>
+    <p>{{ post.name }} {{ post.lastName }}</p>
+    <p>{{ post.nickname }}</p>
     <div>
       <label>Id:</label>
-      {{post.id}}
+      {{ post.id }}
     </div>
     <div>
       <label>Description:</label>
-      {{post.postText}}
+      {{ post.postText }}
     </div>
 
     <ul class="list">
       <p>Comments</p>
-      <li class="list--item" v-for="comment in postComments" :key="comment.commentId">
-        <p>{{comment.nickname}}</p>
-        <p>Id: {{comment.commentId}}</p>
-        <p>{{comment.date}}</p>
-        <p>{{comment.text}}</p>
+      <li
+        class="list--item"
+        v-for="comment in postComments"
+        :key="comment.commentId"
+      >
+        <p>{{ comment.nickname }}</p>
+        <p>Id: {{ comment.commentId }}</p>
+        <p>{{ comment.date }}</p>
+        <p>{{ comment.text }}</p>
         <button @click="editTheComment(comment.commentId)">Edit comment</button>
-        <button @click="deleteComment(comment.commentId)">Delete comment</button>
+        <button @click="deleteComment(comment.commentId)">
+          Delete comment
+        </button>
       </li>
     </ul>
     <div v-if="this.show">
@@ -79,16 +83,16 @@ export default {
 
   methods: {
     gotoPosts() {
-      this.$router.push("/books");
+      this.$router.push("/posts");
     },
     gotoEdit() {
       let id = this.$route.params.id;
-      this.$router.push("/book/edit/" + id);
+      this.$router.push("/post/edit/" + id);
     },
     deletePost() {
       let id = this.$route.params.id;
       deleteItem(id);
-      this.$router.push("/books");
+      this.$router.push("/posts");
     },
     addComment() {
       if (!(this.newComment.nickname && this.newComment.text)) {
