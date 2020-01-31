@@ -1,27 +1,37 @@
 <template>
   <div>
-    <h2>BOOKS</h2>
+    <h2>POSTS</h2>
     <ul>
-      <li v-for="book in books" :key="book.id">
-        <router-link :to="'/book/'+book.id">{{book.id}} - {{book.title}}</router-link>
+      <li v-for="post in posts" :key="post.id">
+        <router-link :to="'/book/' + post.id">{{ post.id }} - {{ post.postTitle }}</router-link>
       </li>
     </ul>
 
-    <a @click="newBook()">New Book</a>
+    <a @click="newPost()">New Post</a>
   </div>
 </template>
 
 <script>
-import books from "./books.js";
-
+import { getList } from "../postsNormalize.js";
 export default {
-  computed: {
-    books() {
-      return books.getBooks();
-    }
+  data: function() {
+    return {
+      posts: []
+    };
+  },
+  created: function() {
+    getList().then(response => (this.posts = response));
+  },
+  beforeRouteEnter(to, from, next) {
+    getList().then(response => {
+      // vm es el componente
+      next(vm => {
+        vm.posts = response;
+      });
+    });
   },
   methods: {
-    newBook() {
+    newPost() {
       this.$router.push("/book/new");
     }
   }

@@ -1,55 +1,57 @@
 <template>
   <div>
-    <h2>{{book.title}}</h2>
-    <p>
-      <span>Id:</span>
-      {{book.id}}
-    </p>
     <div>
-      <label>Title:</label>
-      <input v-model="book.title" placeholder="Title" />
-    </div>
-    <div>
-      <label>Description:</label>
-      <textarea v-model="book.description"></textarea>
+      <label>Post Title:</label>
+      <input v-model="post.postTitle" placeholder="Post Title" />
     </div>
 
-    <button @click="gotoBooks()">Cancel</button>
-    <button @click="saveEdit()">Save</button>
+    <div>
+      <label>Post Author:</label>
+      <input v-model="post.name" placeholder="Autho's Name" />
+      <input v-model="post.lastName" placeholder="Author's Lastname" />
+      <input v-model="post.nickname" placeholder="Author's nickname" />
+    </div>
+
+    <div>
+      <label>Description:</label>
+      <textarea v-model="post.postText"></textarea>
+    </div>
+
+    <button @click="gotoBook()">Cancel</button>
+    <button @click="saveEdition()">Save</button>
   </div>
 </template>
 
 <script>
-import books from "./books.js";
+import { getPost, edit } from "../postsNormalize.js";
 
 export default {
   data: () => ({
-    book: undefined
+    post: {}
   }),
   beforeMount: function() {
     if (!this.$route.params.id) {
-      this.book = { title: "", description: "" };
+      this.post = {
+        name: "",
+        lastName: "",
+        nickname: "",
+        postTitle: "",
+        postText: ""
+      };
     } else {
       let id = this.$route.params.id;
-      this.book = books.getBook(id);
+      getPost(id).then(response => (this.post = response));
     }
   },
   methods: {
-    gotoBooks() {
-      this.$router.push("/books");
+    gotoBook() {
+      let id = this.$route.params.id;
+      this.$router.push("/book/" + id);
     },
-    saveEdit() {
-      // const id = parseFloat(this.$route.params.id);
-      // const position = books.books.findIndex(element => {
-      //   console.log("element.id", element.id);
-      //   console.log("id", id);
-      //   console.log("element.id === id;", element.id === id);
-      //   element.id === id;
-      // });
+    saveEdition() {
+      let id = this.$route.params.id;
 
-      // console.log("la posicion", position);
-      //books.editBook(this.book, position);
-      this.$router.push("/books");
+      edit(this.post, id).then(() => this.$router.push("/book/" + id));
     }
   }
 };

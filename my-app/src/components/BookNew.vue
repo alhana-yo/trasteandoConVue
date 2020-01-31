@@ -1,17 +1,23 @@
 <template>
   <div>
-    <h2>{{book.title}}</h2>
+    <h2>{{post.title}}</h2>
     <!-- <p>
       <span>Id:</span>
-      {{book.id}}
+      {{post.id}}
     </p>-->
     <div>
-      <label>Title:</label>
-      <input v-model="book.title" placeholder="Title" />
+      <label>Author:</label>
+      <input v-model="post.name" placeholder="Name" />
+      <input v-model="post.lastName" placeholder="Last Name" />
+      <input v-model="post.nickname" placeholder="Nickname" />
     </div>
     <div>
-      <label>Description:</label>
-      <textarea v-model="book.description"></textarea>
+      <label>Title:</label>
+      <input v-model="post.postTitle" placeholder="Title" />
+    </div>
+    <div>
+      <label>Text:</label>
+      <textarea v-model="post.postText"></textarea>
     </div>
 
     <button @click="gotoBooks()">Cancel</button>
@@ -20,18 +26,26 @@
 </template>
 
 <script>
-import books from "./books.js";
+// import books from "./books.js";
+
+import { getPost, createPost } from "../postsNormalize.js";
 
 export default {
   data: () => ({
-    book: undefined
+    post: undefined
   }),
   beforeMount: function() {
     if (!this.$route.params.id) {
-      this.book = { title: "", description: "" };
+      this.post = {
+        name: undefined,
+        lastName: undefined,
+        nickname: undefined,
+        postTitle: undefined,
+        postText: undefined
+      };
     } else {
       let id = this.$route.params.id;
-      this.book = books.getBook(id);
+      getPost(id).then(response => (this.post = response));
     }
   },
   methods: {
@@ -39,8 +53,20 @@ export default {
       this.$router.push("/books");
     },
     save() {
-      books.createNewBook(this.book);
-      this.$router.push("/books");
+      if (
+        !(
+          this.post.name &&
+          this.post.lastName &&
+          this.post.nickname &&
+          this.post.postTitle &&
+          this.post.postText
+        )
+      ) {
+        alert("You need to complete all the fields");
+      } else {
+        createPost(this.post);
+        this.$router.push("/books");
+      }
     }
   }
 };
