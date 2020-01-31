@@ -95,7 +95,6 @@ export default {
         alert("You need to complete all the fields");
       } else {
         const postId = this.$route.params.id;
-        // const result = await createComment(this.newComment, postId);
         createComment(this.newComment, postId)
           .then(response => this.postComments.push(response.data))
           .catch(badwords => this.testText(badwords));
@@ -103,12 +102,8 @@ export default {
         this.newComment.text = "";
         this.show = false;
       }
-      // const postId = this.$route.params.id;
-      // const result = await createComment(this.newComment, postId);
-      // this.testText(result);
     },
     showContent() {
-      console.log("holiii");
       this.newComment.nickname = "";
       this.newComment.text = "";
       this.show = true;
@@ -145,14 +140,8 @@ export default {
     },
     async addEditedComment() {
       let postId = this.$route.params.id;
-      // const result = await editComment(
-      //   this.newComment,
-      //   postId,
-      //   this.editedCommentId
-      // );
-      // this.testText(result);
+
       editComment(this.newComment, postId, this.editedCommentId)
-        // .then(response => this.postComments.push(response.data));
         .then(response => {
           this.replaceItem(response.data.commentId, response.data);
           this.show = false;

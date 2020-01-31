@@ -53,9 +53,7 @@ export async function deleteItem(id) {
   console.log("deleted Post", post);
 }
 
-// export async function createComment(info, idPost) {
 export function createComment(info, idPost) {
-  // const post = await saveComment(
   return saveComment(
     {
       nickname: info.nickname,
@@ -63,16 +61,9 @@ export function createComment(info, idPost) {
     },
     idPost
   );
-  // .catch(error => {
-  //   return error;
-  // });
-  //Inside 'post' we have the badwords (if comment has them)
-  //return post;
 }
 
-// export async function editComment(info, idPost, idComment) {
 export function editComment(info, idPost, idComment) {
-  // const post = await updateComment(
   return updateComment(
     {
       nickname: info.nickname,
@@ -81,11 +72,6 @@ export function editComment(info, idPost, idComment) {
     idPost,
     idComment
   );
-  // ).catch(error => {
-  //   return error;
-  // });
-  // //Inside 'post' we have the badwords (if comment has them)
-  // return post;
 }
 
 export async function deleteReview(idPost, idComment) {
